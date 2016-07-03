@@ -1,0 +1,12 @@
+library(compiler)
+library(selac)
+library(microbenchmark)
+jit.off <- microbenchmark(a<-selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites=100), times=50)
+enableJIT(3)
+#run once to compile
+a<-selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites=100)
+jit.on <- microbenchmark(a<-selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites=100), times=50)
+print("no jit")
+print(jit.off)
+print("yes jit")
+print(jit.on)

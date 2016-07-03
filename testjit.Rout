@@ -1,0 +1,51 @@
+
+R version 3.3.0 (2016-05-03) -- "Supposedly Educational"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> library(compiler)
+> library(selac)
+Loading required package: ape
+Loading required package: nloptr
+Loading required package: nnet
+> library(microbenchmark)
+> jit.off <- microbenchmark(a<-selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites=100), times=50)
+> enableJIT(3)
+[1] 0
+> #run once to compile
+> a<-selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites=100)
+> jit.on <- microbenchmark(a<-selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites=100), times=50)
+> print("no jit")
+[1] "no jit"
+> print(jit.off)
+Unit: milliseconds
+                                                                     expr
+ a <- selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites = 100)
+      min       lq     mean  median       uq      max neval
+ 278.9358 304.2896 326.2504 310.387 326.2611 487.2955    50
+> print("yes jit")
+[1] "yes jit"
+> print(jit.on)
+Unit: milliseconds
+                                                                     expr
+ a <- selac:::FastCreateAllCodonFixationProbabilityMatrices(nsites = 100)
+      min       lq     mean   median       uq      max neval
+ 191.4347 196.9229 213.9221 201.8577 214.1239 355.0203    50
+> 
+> proc.time()
+   user  system elapsed 
+ 28.446   0.424  29.281 
