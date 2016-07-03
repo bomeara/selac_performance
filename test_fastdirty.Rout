@@ -1,0 +1,253 @@
+
+R version 3.3.0 (2016-05-03) -- "Supposedly Educational"
+Copyright (C) 2016 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin13.4.0 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+[Previously saved workspace restored]
+
+> library(selac)
+Loading required package: ape
+Loading required package: nloptr
+Loading required package: nnet
+
+Attaching package: ‘selac’
+
+The following objects are masked _by_ ‘.GlobalEnv’:
+
+    GetPartitionOrder, GetSelacSiteLikelihoods, SelacLargeOptimize,
+    SelacOptimize
+
+> library(lineprof)
+> tree<-read.tree('example/rokas.yeast.red.tre')
+> source("/Users/bomeara/Documents/MyDocuments/GitClones/selac/R/selac.R")
+Loading required package: Matrix
+
+Attaching package: ‘expm’
+
+The following object is masked from ‘package:Matrix’:
+
+    expm
+
+The following object is masked from ‘package:ape’:
+
+    balance
+
+
+Attaching package: ‘seqinr’
+
+The following objects are masked from ‘package:ape’:
+
+    as.alignment, consensus
+
+> set.seed(42)
+> system.time(l0 <- lineprof(result.1 <- SelacLargeOptimize(codon.data.path = 'example/', phy = tree,
++              edge.length = 'optimize', optimal.aa = 'optimize', data.type='codon',
++              nuc.model = "GTR", include.gamma = FALSE, ncats = 4, numcode = 1,
++              diploid = FALSE, k.levels = 0, aa.properties = NULL, verbose = FALSE, max.tol=0.1, max.evals = 10,
++              n.cores = 2, max.restarts = 1, n.partitions=2)))
+Initializing data and model parameters... 
+Finished. Performing random restart 1... 
+       Doing first pass using majority-rule optimal amino acid... 
+              Optimizing edge lengths 
+[1] 10813.6
+ [1] 0.09530753 1.39995591 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10642.35
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10642.3474147978 
+       Finished. Iterating search -- Round 1 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10416.98
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10416.98
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10416.9786939551 difference from previous round 225.36872084 
+       Finished. Iterating search -- Round 2 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10355.37
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10355.37
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10355.3677463665 difference from previous round 61.61094759 
+       Finished. Iterating search -- Round 3 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10341.26
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10341.26
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10341.2625775827 difference from previous round 14.10516878 
+       Finished. Iterating search -- Round 4 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10335.26
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10335.26
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10335.2553568855 difference from previous round 6.0072207 
+       Finished. Iterating search -- Round 5 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10334.33
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10334.33
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10334.3305412143 difference from previous round 0.92481567 
+       Finished. Iterating search -- Round 6 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10330.83
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10330.83
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10330.8262212165 difference from previous round 3.50432 
+Finished. Summarizing results... 
+    user   system  elapsed 
+1547.674   80.723  893.617 
+> 
+> library(compiler)
+> enableJIT(3)
+[1] 0
+> set.seed(42)
+> system.time(l3 <- lineprof(result.1 <- SelacLargeOptimize(codon.data.path = 'example/', phy = tree,
++              edge.length = 'optimize', optimal.aa = 'optimize', data.type='codon',
++              nuc.model = "GTR", include.gamma = FALSE, ncats = 4, numcode = 1,
++              diploid = FALSE, k.levels = 0, aa.properties = NULL, verbose = FALSE, max.tol=0.1, max.evals = 10,
++              n.cores = 2, max.restarts = 1, n.partitions=2)))
+Initializing data and model parameters... 
+Finished. Performing random restart 1... 
+       Doing first pass using majority-rule optimal amino acid... 
+              Optimizing edge lengths 
+[1] 10813.6
+ [1] 0.09530753 1.39995591 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10642.35
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10642.3474147978 
+       Finished. Iterating search -- Round 1 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10416.98
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10416.98
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10416.9786939551 difference from previous round 225.36872084 
+       Finished. Iterating search -- Round 2 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10355.37
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10355.37
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10355.3677463665 difference from previous round 61.61094759 
+       Finished. Iterating search -- Round 3 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10341.26
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10341.26
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10341.2625775827 difference from previous round 14.10516878 
+       Finished. Iterating search -- Round 4 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10335.26
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10335.26
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10335.2553568855 difference from previous round 6.0072207 
+       Finished. Iterating search -- Round 5 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10334.33
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10334.33
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10334.3305412143 difference from previous round 0.92481567 
+       Finished. Iterating search -- Round 6 
+              Optimizing amino acids 
+              Optimizing edge lengths 
+[1] 10330.83
+ [1] 1.53785172 1.76270275 0.11368313 0.11052322 0.08965315 0.08833039
+ [7] 0.12272193 0.14050558 0.11978248 0.14425338 0.24301881 0.19870664
+              Optimizing model parameters 
+[1] 10330.83
+        [,1]     [,2]     [,3]      [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11]
+[1,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+[2,] 2.49109 1.829272 0.101799 0.1486509 0.25 0.25    1    1    1     1     1
+       Current likelihood 10330.8262212165 difference from previous round 3.50432 
+Finished. Summarizing results... 
+    user   system  elapsed 
+1703.907  112.458  946.352 
+> 
+> save(list=ls(), file="fastdirty.rda")
+> 
+> proc.time()
+    user   system  elapsed 
+3254.160  193.349 1842.811 
